@@ -1,17 +1,26 @@
-# Top-level runner for convenience
-# Allows running `python app.py` from the repo root.
-import runpy
 import os
 import sys
 
-THIS_DIR = os.path.dirname(__file__)
+# Get absolute paths to handle different execution environments
+THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 INNER_PROJECT_DIR = os.path.join(THIS_DIR, 'SkillGapAnalysisProject')
-INNER_APP = os.path.join(INNER_PROJECT_DIR, 'app.py')
+
+# Add inner project directory to sys.path so its sub-packages
+# (routes, utils, ml_models) can be imported
+if INNER_PROJECT_DIR not in sys.path:
+    sys.path.insert(0, INNER_PROJECT_DIR)
+
+# Import the create_app factory from the inner SkillGapAnalysisProject/app.py
+try:
+    # Explicit absolute import if added to sys.path correctly
+    from app import create_app
+except ImportError:
+    # Fallback to namespaced import
+    from SkillGapAnalysisProject.app import create_app
+
+# Create the application instance that Vercel looks for by default
+app = create_app()
 
 if __name__ == '__main__':
-    # Add inner project directory to sys.path so relative imports inside
-    # the inner app (e.g. `from utils import db`) succeed when running
-    # from the repo root.
-    if INNER_PROJECT_DIR not in sys.path:
-        sys.path.insert(0, INNER_PROJECT_DIR)
-    runpy.run_path(INNER_APP, run_name='__main__')
+    # Local development server
+    app.run(host='127.0.0.1', port=5001, debug=True)
