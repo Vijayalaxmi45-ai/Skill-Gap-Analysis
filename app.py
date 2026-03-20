@@ -1,41 +1,43 @@
 import os
 import sys
+import traceback
+from flask import Flask
+
+# Initialize with a dummy app so the linter is happy and we have a fallback
+app = Flask(__name__)
+STARTUP_ERROR = None
 
 # Get absolute paths to handle different execution environments
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 INNER_PROJECT_DIR = os.path.join(THIS_DIR, 'SkillGapAnalysisProject')
 
-# Add inner project directory to sys.path so its sub-packages
-# (routes, utils, ml_models) can be imported
+# Add inner project directory to sys.path
 if INNER_PROJECT_DIR not in sys.path:
     sys.path.insert(0, INNER_PROJECT_DIR)
 
-# Import the uniquely named 'main_app' from the inner folder
-# We renamed app.py to main_app.py to avoid 500 error name clash on Vercel
 try:
     from main_app import create_app
-except ImportError:
-    # Fallback if package structure is needed
-    try:
-        from SkillGapAnalysisProject.main_app import create_app
-    except ImportError:
-        # One last try to find it
-        sys.path.append(THIS_DIR)
-        from SkillGapAnalysisProject.main_app import create_app
-
-# Create the application instance that Vercel looks for by default
-try:
+    # Overwrite dummy app with real one
     app = create_app()
-except Exception as e:
-    # If it fails to start, create a dummy app to show the error
-    from flask import Flask
-    import traceback
-    app = Flask(__name__)
-    
+except Exception:
+    STARTUP_ERROR = traceback.format_exc()
+
+if STARTUP_ERROR:
     @app.route('/', defaults={'path': ''})
     @app.route('/<path:path>')
     def catch_all(path):
-        return f"<h1>Startup Error</h1><pre>{traceback.format_exc()}</pre>", 500
+        return f"<h1>Startup Error</h1><pre>{STARTUP_ERROR}</pre>", 500
+
+# Add a debug route to check filesystem on Vercel
+@app.route('/debug/ls')
+def debug_ls():
+    try:
+        root_files = os.listdir('.')
+        inner = 'SkillGapAnalysisProject'
+        inner_files = os.listdir(inner) if os.path.exists(inner) else "Not Found"
+        return f"Root: {root_files}<br>Inner: {inner_files}<br>CWD: {os.getcwd()}"
+    except Exception as e:
+        return str(e)
 
 if __name__ == '__main__':
     # Local development server
