@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+{% block title %}AI Career Campus - Discover Your Skill Gap with AI{% endblock %}
+{% block content %}
+<style>
+.hero { 
+  background: linear-gradient(135deg, #007bff, #6610f2, #6f42c1); 
+  color: white; 
+  padding: 60px 20px; 
+  border-radius: 20px; 
+  text-align: center; 
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
+  margin-bottom: 50px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+}
+.hero-content { position: relative; z-index: 1; }
+.hero h1 { 
+  font-size: 3.5rem; 
+  font-weight: 800; 
+  animation: fadeInDown 1s ease; 
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.hero p { 
+  font-size: 1.3rem; 
+  margin: 30px auto; 
+  max-width: 700px; 
+  animation: fadeInUp 1.2s ease; 
+  line-height: 1.6;
+  opacity: 0.95;
+}
+.hero .btn { 
+  font-size: 1.2rem; 
+  padding: 15px 35px; 
+  border-radius: 50px; 
+  font-weight: 700; 
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.hero .btn:hover { 
+  transform: translateY(-3px); 
+  box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+}
+.features { margin: 60px 0; }
+.feature-card { 
+  background: #fff; 
+  border-radius: 20px; 
+  padding: 40px 30px; 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+  transition: all 0.4s ease; 
+  border: 1px solid #f8f9fa;
+  height: 100%;
+  text-align: center;
+}
+.feature-card:hover { 
+  transform: translateY(-15px); 
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  border-color: #007bff;
+}
+.feature-card .icon { 
+  font-size: 3rem; 
+  margin-bottom: 20px;
+  display: block;
+}
+.feature-card h4 { 
+  margin-bottom: 15px; 
+  color: #007bff; 
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+.feature-card p { 
+  color: #6c757d; 
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+.stats-section {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  padding: 60px 0;
+  margin: 60px 0;
+  border-radius: 20px;
+}
+.stat-card {
+  text-align: center;
+  padding: 30px;
+}
+.stat-number {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #007bff;
+  display: block;
+}
+.stat-label {
+  font-size: 1.1rem;
+  color: #6c757d;
+  font-weight: 600;
+}
+@keyframes fadeInDown { 
+  from {opacity: 0; transform: translateY(-50px);} 
+  to {opacity: 1; transform: translateY(0);} 
+}
+@keyframes fadeInUp { 
+  from {opacity: 0; transform: translateY(50px);} 
+  to {opacity: 1; transform: translateY(0);} 
+}
+.cta-section {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  padding: 60px 40px;
+  border-radius: 20px;
+  text-align: center;
+  margin: 60px 0;
+}
+.cta-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.cta-section p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+</style>
+
+<!-- Hero Section -->
+<div class="hero">
+  <div class="hero-content">
+    <h1>Discover Your Skill Gap with AI</h1>
+    <p>Upload your resume or add your skills to see what to improve for your target job or company. Get personalized recommendations, track your progress, and advance your career with intelligent insights.</p>
+    <a href="{{ url_for('main.dashboard') }}" class="btn btn-warning btn-lg">Analyze My Gap</a>
+  </div>
+</div>
+
+<!-- Features Section -->
+<div class="container features">
+  <div class="row text-center">
+    <div class="col-md-4 mb-4">
+      <div class="feature-card">
+        <span class="icon">📊</span>
+        <h4>AI-Powered Analysis</h4>
+        <p>Advanced AI analyzes your resume and skills to identify gaps, match you with relevant jobs, and provide personalized career insights.</p>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="feature-card">
+        <span class="icon">🎯</span>
+        <h4>Personalized Learning Paths</h4>
+        <p>Get tailored course recommendations, skill development roadmaps, and progress tracking to close your skill gaps effectively.</p>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="feature-card">
+        <span class="icon">🌍</span>
+        <h4>Real-Time Job Market</h4>
+        <p>Access live job feeds, salary insights, and market trends to make informed career decisions and stay ahead of the competition.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Stats Section -->
+<div class="stats-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-6 mb-4">
+        <div class="stat-card">
+          <span class="stat-number">10K+</span>
+          <span class="stat-label">Users Analyzed</span>
+        </div>
+      </div>
+      <div class="col-md-3 col-6 mb-4">
+        <div class="stat-card">
+          <span class="stat-number">500+</span>
+          <span class="stat-label">Companies</span>
+        </div>
+      </div>
+      <div class="col-md-3 col-6 mb-4">
+        <div class="stat-card">
+          <span class="stat-number">95%</span>
+          <span class="stat-label">Success Rate</span>
+        </div>
+      </div>
+      <div class="col-md-3 col-6 mb-4">
+        <div class="stat-card">
+          <span class="stat-number">24/7</span>
+          <span class="stat-label">AI Support</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA Section -->
+<div class="cta-section">
+  <h2>Ready to Transform Your Career?</h2>
+  <p>Join thousands of professionals who have discovered their skill gaps and advanced their careers with AI Career Campus.</p>
+  <a href="{{ url_for('main.dashboard') }}" class="btn btn-light btn-lg">Start Your Analysis</a>
+</div>
+{% endblock %}

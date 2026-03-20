@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Add Company Requirement</h2>
+    <form action="/add_requirement" method="POST">
+        <div class="form-group mb-3">
+            <label for="job_title">Job Title</label>
+            <input type="text" class="form-control" id="job_title" name="job_title" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="skills">Required Skills (comma separated)</label>
+            <input type="text" class="form-control" id="skills" name="skills" placeholder="Python, SQL, ML" required>
+        </div>
+        <button type="submit" class="btn btn-success">Save Requirement</button>
+    </form>
+</div>
+{% endblock %}

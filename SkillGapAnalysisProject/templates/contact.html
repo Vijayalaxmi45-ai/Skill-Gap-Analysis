@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Contact Us{% endblock %}
+{% block content %}
+
+<style>
+  body {
+    background: linear-gradient(135deg, #fdfbfb, #ebedee);
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .contact-wrapper {
+    min-height: 90vh; /* fill viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 1px;
+    min-height: calc(85vh - 90px);
+  }
+
+  .contact-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    animation: fadeInUp 0.8s ease;
+    width: 100%;
+    max-width: 700px;
+  }
+
+  .contact-card h1 {
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+
+  .form-control {
+    border-radius: 12px;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+  }
+  .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+  }
+
+  .btn-contact {
+   background: linear-gradient(135deg, #007bff, #6610f2);
+    border: none;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    color: #fff;
+    margin-top: 5px;
+  }
+  .btn-contact:hover {
+    background: linear-gradient(135deg, #6610f2, #007bff);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  }
+
+  @keyframes fadeInUp {
+    from {opacity: 0; transform: translateY(40px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+</style>
+
+<div class="contact-wrapper">
+  <div class="contact-card">
+    <h1>📩 Contact Us</h1>
+    <form method="POST" action="#">
+      <div class="mb-3">
+        <label for="name" class="form-label">Your Name</label>
+        <input type="text" class="form-control" id="name" name="name" required placeholder="Enter your name">
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Your Email</label>
+        <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your email">
+      </div>
+      <div class="mb-3">
+        <label for="message" class="form-label">Message</label>
+        <textarea class="form-control" id="message" name="message" rows="2" required placeholder="Write your message..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-contact w-100">Send Message</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

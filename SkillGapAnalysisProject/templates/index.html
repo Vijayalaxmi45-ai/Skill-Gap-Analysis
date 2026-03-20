@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center">
+  <h1 class="display-4">Welcome to Skill Gap Analysis</h1>
+  <p class="lead">Identify your strengths, analyze your weaknesses, and bridge the skill gap with AI-powered insights.</p>
+  <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-lg">Get Started</a>
+  <a href="{{ url_for('main.about') }}" class="btn btn-outline-light btn-lg">Learn More</a>
+</div>
+
+<div class="row mt-5">
+  <div class="col-md-4">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Upload Resume</h5>
+        <p class="card-text">Upload your resume and let our system analyze your skills against industry requirements.</p>
+        <a href="{{ url_for('analysis.analysis') }}" class="btn btn-dark">Try Analysis</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Company Insights</h5>
+        <p class="card-text">See what skills companies are demanding right now and plan your career path.</p>
+        <a href="{{ url_for('company.company_requirements') }}" class="btn btn-dark">View Companies</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Visual Reports</h5>
+        <p class="card-text">Our AI engine provides interactive graphs and charts to visualize your skill gap.</p>
+        <a href="{{ url_for('analysis.analysis') }}" class="btn btn-dark">See Reports</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,5 @@
+<form action="{{ url_for('upload_resume') }}" method="post" enctype="multipart/form-data">
+    <input type="file" name="resume">
+    <button type="submit">Upload</button>
+</form>
+<a href="{{ url_for('dashboard') }}">Back to Dashboard</a>

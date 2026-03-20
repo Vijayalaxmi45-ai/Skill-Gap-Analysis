@@ -1,0 +1,15 @@
+<h2>Matched Skills:</h2>
+<ul>
+  {% for skill in matched %}
+    <li>{{ skill }}</li>
+  {% endfor %}
+</ul>
+
+<h2>Missing Skills:</h2>
+<ul>
+  {% for skill in missing %}
+    <li>{{ skill }}</li>
+  {% endfor %}
+</ul>
+<a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+
