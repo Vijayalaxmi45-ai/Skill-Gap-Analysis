@@ -24,7 +24,18 @@ except ImportError:
         from SkillGapAnalysisProject.main_app import create_app
 
 # Create the application instance that Vercel looks for by default
-app = create_app()
+try:
+    app = create_app()
+except Exception as e:
+    # If it fails to start, create a dummy app to show the error
+    from flask import Flask
+    import traceback
+    app = Flask(__name__)
+    
+    @app.route('/', defaults={'path': ''})
+    @app.route('/<path:path>')
+    def catch_all(path):
+        return f"<h1>Startup Error</h1><pre>{traceback.format_exc()}</pre>", 500
 
 if __name__ == '__main__':
     # Local development server
