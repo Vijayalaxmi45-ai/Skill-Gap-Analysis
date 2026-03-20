@@ -1,0 +1,87 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+dist/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+SkillGapAnalysisProject/venv/
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer artifacts
+*.log
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Uploaded files / user data
+uploads/
+uploads/resumes/
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# my env files
+.env
+
+# Ignore python bytecode in site-packages etc
+*.pyc
+
+# Ignore sensitive or local files
+instance/
+
+# JetBrains
+*.iml
+
+# Temporary
+tmp/
+
