@@ -7,7 +7,13 @@ from ml_models import nlp_resume_parser
 
 upload = Blueprint('upload', __name__)
 
-UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'uploads', 'resumes')
+# Use /tmp for uploads on serverless environments like Vercel
+IS_VERCEL = "VERCEL" in os.environ
+if IS_VERCEL:
+    UPLOAD_FOLDER = os.path.join('/tmp', 'uploads', 'resumes')
+else:
+    UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'uploads', 'resumes')
+
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 
